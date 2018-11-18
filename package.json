@@ -1,0 +1,29 @@
+{
+  "name": "@advanced-rest-client/saved-list-mixin",
+  "description": "A mixin to be applied to a list that renders saved requests.",
+  "version": "2.0.0-preview",
+  "license": "Apache-2.0",
+  "main": "saved-list-mixin.html",
+  "authors": [
+    "Pawel Psztyc",
+    "The Advanced REST client authors <arc@mulesoft.com>"
+  ],
+  "devDependencies": {
+    "@polymer/gen-typescript-declarations": "^1.5.1"
+  },
+  "private": false,
+  "scripts": {
+    "lint": "polymer lint saved-list-mixin.html",
+    "test-sauce": "wct --plugin sauce --job-name \"saved-list-mixin:local-test\"",
+    "test": "wct --plugin local",
+    "update-types": "gen-typescript-declarations --deleteExisting --outDir ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/advanced-rest-client/saved-list-mixin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/advanced-rest-client/saved-list-mixin/issues",
+    "email": "arc@mulesoft.com"
+  }
+}
