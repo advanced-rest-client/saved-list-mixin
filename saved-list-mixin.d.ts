@@ -5,14 +5,14 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   saved-list-mixin.html
+ *   saved-list-mixin.js
  */
 
-/// <reference path="../polymer/types/lib/utils/mixin.d.ts" />
-/// <reference path="../polymer/types/lib/utils/render-status.d.ts" />
 
-declare namespace ApiElements {
-}
+// tslint:disable:variable-name Describing an API that's defined elsewhere.
+// tslint:disable:no-any describes the API as best we are able today
+
+export {SavedListMixin};
 
 declare namespace ArcComponents {
 
@@ -200,3 +200,5 @@ declare namespace ArcComponents {
     _prepareQuery(query: String|null): String|null;
   }
 }
+
+export {SavedListMixinConstructor};

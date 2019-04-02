@@ -4,13 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
   <title>saved-list-mixin test</title>
-  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-  <script src="../../web-component-tester/browser.js"></script>
-  <link rel="import" href="../../app-pouchdb/pouchdb.html">
-  <link rel="import" href="../../arc-models/request-model.html">
-  <link rel="import" href="../../arc-models/url-indexer.html">
-  <link rel="import" href="../../arc-data-generator/arc-data-generator.html">
-  <link rel="import" href="test-element.html">
+
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../../@polymer/test-fixture/test-fixture.js"></script>
+  <script src="../../../mocha/mocha.js"></script>
+  <script src="../../../chai/chai.js"></script>
+  <script src="../../../wct-mocha/wct-mocha.js"></script>
+
+  <!-- Required by the request model -->
+  <script src="../../../pouchdb-quick-search/dist/pouchdb.quick-search.min.js"></script>
+
 </head>
 <body>
 
@@ -42,8 +45,13 @@
     </template>
   </test-fixture>
 
-  <script>
-  /* global DataGenerator */
+  <script type="module">
+  import '../../../@advanced-rest-client/arc-models/request-model.js';
+  import '../../../@advanced-rest-client/arc-models/url-indexer.js';
+  import {DataGenerator} from '../../../@advanced-rest-client/arc-data-generator/arc-data-generator.js';
+  import './test-element.js';
+  import {afterNextRender} from '../../../@polymer/polymer/lib/utils/render-status.js';
+
   suite('saved-list-mixin', () => {
     suite('queryOptions computations', () => {
       test('Sets default query limit', () => {
@@ -549,7 +557,7 @@
         let called = false;
         element._loadPage = () => called = true;
         element.loadNext();
-        Polymer.RenderStatus.afterNextRender(element, () => {
+        afterNextRender(element, () => {
           assert.isTrue(called);
           done();
         });
@@ -574,7 +582,7 @@
         element._loadPage = () => called = true;
         element.__makingQuery = true;
         element.loadNext();
-        Polymer.RenderStatus.afterNextRender(element, () => {
+        afterNextRender(element, () => {
           assert.isFalse(called);
           done();
         });
@@ -585,7 +593,7 @@
         element._loadPage = () => called = true;
         element.isSearch = true;
         element.loadNext();
-        Polymer.RenderStatus.afterNextRender(element, () => {
+        afterNextRender(element, () => {
           assert.isFalse(called);
           done();
         });
@@ -767,7 +775,7 @@
         element.notifyResize = () => called = true;
         element._loadPage()
         .then(() => {
-          Polymer.RenderStatus.afterNextRender(element, () => {
+          afterNextRender(element, () => {
             assert.isTrue(called);
             done();
           });
