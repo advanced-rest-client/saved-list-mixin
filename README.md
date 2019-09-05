@@ -24,12 +24,15 @@ import { SavedListMixin } from '@advanced-rest-client/saved-list-mixin/saved-lis
 class SampleElement extends SavedListMixin(LitElement) {
   render() {
     return html`
+    ${this.modelTemplate}
     ${(this.requests || []).map((request) => html`...`)}
     `;
   }
 }
 customElements.define('sample-element', SampleElement);
 ```
+
+Inject `modelTemplate` into the shadow DOM to initialize data models.
 
 ## Development
 

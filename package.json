@@ -24,7 +24,8 @@
     "url": "git://github.com/advanced-rest-client/saved-list-mixin.git"
   },
   "dependencies": {
-    "@advanced-rest-client/arc-models": "^3.0.0-preview.7"
+    "@advanced-rest-client/arc-models": "^3.0.0-preview.7",
+    "lit-html": "^1.1.2"
   },
   "devDependencies": {
     "@advanced-rest-client/arc-data-generator": "^3.0.3",

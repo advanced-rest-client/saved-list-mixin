@@ -11,7 +11,9 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
+import { html } from 'lit-html';
 import '@advanced-rest-client/arc-models/request-model.js';
+import '@advanced-rest-client/arc-models/url-indexer.js';
 /**
  * A mixin to be applied to a list that renders saved requests.
  * It contains methods to query for saved list and to search saved requests.
@@ -100,11 +102,18 @@ export const SavedListMixin = (base) => class extends base {
     return !!isSearch && !querying && !(requests && requests.length);
   }
 
+  get modelTemplate() {
+    return html`
+      <request-model></request-model>
+      <url-indexer></url-indexer>
+    `;
+  }
+
   get requestModel() {
-    if (!this.__requestModel) {
-      this.__requestModel = document.createElement('request-model');
+    if (!this.__model) {
+      this.__model = this.shadowRoot.querySelector('request-model');
     }
-    return this.__requestModel;
+    return this.__model;
   }
 
   constructor() {
