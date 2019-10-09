@@ -389,6 +389,16 @@ export const SavedListMixin = (base) => class extends base {
     } catch (cause) {
       this._handleError(cause);
     }
+    // This helps prioritize search development
+    this.dispatchEvent(new CustomEvent('send-analytics', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        type: 'event',
+        category: 'Content search',
+        action: 'Saved search'
+      }
+    }));
   }
   /**
    * Prepares a query string to search the data store.
