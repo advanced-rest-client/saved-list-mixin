@@ -1,7 +1,7 @@
 {
   "name": "@advanced-rest-client/saved-list-mixin",
   "description": "A mixin to be applied to a list that renders saved requests.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "license": "Apache-2.0",
   "main": "saved-list-mixin.js",
   "keywords": [
