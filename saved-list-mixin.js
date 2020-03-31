@@ -53,7 +53,11 @@ export const SavedListMixin = (base) => class extends base {
       /**
        * When set it won't query for data automatically when attached to the DOM.
        */
-      noAuto: { type: Boolean }
+      noAuto: { type: Boolean },
+      /**
+       * When set the datastore query is performed with `detailed` option
+       */
+      detailedSearch: { type: Boolean },
     };
   }
 
@@ -122,6 +126,7 @@ export const SavedListMixin = (base) => class extends base {
     this._onDatabaseDestroy = this._onDatabaseDestroy.bind(this);
 
     this.pageLimit = 150;
+    this.detailedSearch = false;
   }
 
   connectedCallback() {
@@ -380,7 +385,7 @@ export const SavedListMixin = (base) => class extends base {
     const model = this.requestModel;
     try {
       query = this._prepareQuery(query);
-      let result = await model.query(query, 'saved');
+      let result = await model.query(query, 'saved', this.detailedSearch);
       result = this._processRequestsResponse(result);
       if (result) {
         this._appendItems(result);
